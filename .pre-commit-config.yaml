@@ -8,8 +8,8 @@ repos:
   - id: detect-private-key
   - id: end-of-file-fixer
     exclude: .terraform.lock.hcl
-  # - id: no-commit-to-branch
-  #   args: [-b, main]
+  - id: no-commit-to-branch
+    args: [-b, main]
   - id: trailing-whitespace
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: v2.3.0
