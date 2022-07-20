@@ -3,9 +3,9 @@ version: '3.9'
 services:
   terraform:
     env_file:
-      - ./terraform/.env
+    - ./terraform/.env
     image: hashicorp/terraform:1.1.9
     container_name: mj-terraform
     volumes:
-      - ./terraform:/terraform
+    - ./terraform:/terraform
     working_dir: /terraform

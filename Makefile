@@ -35,13 +35,16 @@ docker-stop:
 docker-up:
 	docker-compose up
 
-.PHONY: tf-init tf-fmt tf-validate tf-plan tf-apply tf-destroy tf-workspace-list tf-workspace-dev tf-workspace-staging tf-workspace-prod
+.PHONY: tf-init tf-init-ms tf-fmt tf-validate tf-plan tf-apply tf-destroy tf-workspace-list tf-workspace-dev tf-workspace-staging tf-workspace-prod
 
 tf-init:
 	docker-compose run --rm terraform init
 
+tf-init-ms:
+	docker-compose run --rm terraform init -migrate-state
+
 tf-fmt:
-	docker-compose run --rm terraform fmt
+	docker-compose run --rm terraform fmt -recursive
 
 tf-validate:
 	docker-compose run --rm terraform validate
