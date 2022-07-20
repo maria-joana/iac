@@ -2,12 +2,10 @@ version: '3.9'
 
 services:
   terraform:
+    env_file:
+      - ./terraform/.env
     image: hashicorp/terraform:1.1.9
     container_name: mj-terraform
     volumes:
-      - .:/iac
-    working_dir: /iac
-    environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+      - ./terraform:/terraform
+    working_dir: /terraform
