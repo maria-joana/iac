@@ -2,19 +2,23 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~>4.14.0"
+      version = "~>4.22.0"
     }
   }
+}
 
-  backend "s3" {
-    bucket         = "maria-joana-iac-tf-state"
-    key            = "maria-joana-iac.tfstate"
-    region         = "us-east-1"
+data "terraform_remote_state" "tf_state" {
+  backend   = "s3"
+  workspace = terraform.workspace
+
+  config = {
+    bucket         = var.bucket_name
+    dynamodb_table = var.dynamodb_table
+    dynamodb_key   = var.dynamodb_key
     encrypt        = true
-    dynamodb_table = "maria-joana-iac-tf-state-lock"
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
